@@ -70,7 +70,7 @@ def render(source_: Image.Image, out_size=(500, 500)):
         chars.append(char_row)
 
     console = Console()
-    string = color_char(image, chars,mask,0.5)
+    string = color_char(image, chars,mask,0.75)
 
 
     console.print(string)

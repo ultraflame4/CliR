@@ -10,27 +10,32 @@ from rich.style import Style
 from rich.text import Text
 
 from CliR.chartools import PixelsPerChar, split_to_char, pixels2Char
+from CliR.tools import color_twotone
 
 
-def color_char(image: Image.Image, chars: list[str]):
+def color_char(image: Image.Image, chars: list[str], mask: Image.Image,bg_intensity:float=1):
     """
     Colors a string of text using the source image.
 
+    :param bg_intensity: Intensity of the background color
     :param image: The source image
     :param chars: The string to color
+    :param mask: The twotone mask
     :return:
     """
 
     rows = len(chars)
     cols = len(chars[0])
     string = Text()
-    data = np.asarray(image.resize((cols, rows)))
+
+    colors = color_twotone(image, mask)
 
     for y, row in enumerate(chars):
         for x, char in enumerate(row):
-            pixel = data[y, x]
-            fore = Color.from_rgb(pixel[0], pixel[1], pixel[2])
-            back = Color.from_rgb(pixel[0] / 4, pixel[1] / 4, pixel[2] / 4)
+            fore_ = colors[y, x][0]
+            back_ = colors[y, x][1]
+            fore = Color.from_rgb(fore_[0],fore_[1], fore_[2])
+            back = Color.from_rgb(back_[0]*bg_intensity, back_[1]*bg_intensity , back_[2]*bg_intensity)
             style = Style(color=fore, bold=True, bgcolor=back)
             string.append(char, style=style)
         string += "\n"
@@ -56,8 +61,8 @@ def render(source_: Image.Image, out_size=(500, 500)):
     gray.save("./build/gray.png")
 
     data,mask = split_to_char(gray)
-    chars = []
 
+    chars = []
     for row in data:
         char_row = ""
         for cell in row:
@@ -65,6 +70,7 @@ def render(source_: Image.Image, out_size=(500, 500)):
         chars.append(char_row)
 
     console = Console()
-    string = color_char(image, chars)
+    string = color_char(image, chars,mask,0.5)
+
 
     console.print(string)

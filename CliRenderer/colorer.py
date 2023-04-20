@@ -84,5 +84,5 @@ def color_char(image: Image.Image, chars: list[str], mask: Image.Image,bg_intens
             back = Color.from_rgb(back_[0]*bg_intensity, back_[1]*bg_intensity , back_[2]*bg_intensity)
             style = Style(color=fore, bold=True, bgcolor=back)
             string.append(char, style=style)
-        string += "\n"
+        string += "\r\n"
     return string

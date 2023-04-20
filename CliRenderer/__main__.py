@@ -46,7 +46,7 @@ def cli_main(source: Path = typer.Argument(..., help="The path to source image."
         typer.echo(f"Saving output to {output}...")
         output.parent.mkdir(parents=True, exist_ok=True)
         with open(output, "wb") as f:
-            f.write(string.encode("utf-16"))
+            f.write(string.encode("utf-8"))
 
     print(string)
     print(f"Saved output to {output}... Read it using `cat {output}`")

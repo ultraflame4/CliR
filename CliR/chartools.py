@@ -2,14 +2,17 @@ import numpy as np
 import numpy.typing as npt
 from PIL import Image
 
+from CliR.core import Flags
+
 PixelsPerChar = (2, 4)
 PixelsPerCharCount = PixelsPerChar[0] * PixelsPerChar[1]
 
-braille6= " ⠁⠂▘⠄⠅⠆⠇⠈▔⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗▝⠙⠚▀⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"
-braille8= "⡀⡁⡂⡃▖⡅⡆▌⡈⡉⡊⡋⡌⡍⡎⡏⡐⡑⡒⡓⡔⡕⡖⡗⡘⡙⡚⡛▞⡝⡞▛⡠⡡⡢⡣⡤⡥⡦⡧⡨⡩⡪⡫⡬⡭⡮⡯⡰⡱⡲⡳⡴⡵⡶⡷⡸⡹⡺⡻⡼⡽⡾⡿⢀⢁⢂⢃⢄⢅⢆⢇⢈⢉⢊⢋⢌⢍⢎⢏⢐⢑⢒" \
-          "⢓⢔⢕⢖⢗⢘⢙⢚⢛⢜⢝⢞⢟▗⢡⢢▚⢤⢥⢦⢧⢨⢩⢪⢫⢬⢭⢮⢯⢰⢱⢲⢳⢴⢵⢶⢷▐⢹⢺▜⢼⢽⢾⢿▂⣁⣂⣃⣄⣅⣆⣇⣈⣉⣊⣋⣌⣍⣎⣏⣐⣑⣒⣓⣔⣕⣖⣗⣘⣙⣚⣛⣜⣝⣞⣟⣠⣡⣢⣣▃⣥" \
-          "⣦▙⣨⣩⣪⣫⣬⣭⣮⣯⣰⣱⣲⣳⣴⣵▅⣷⣸⣹⣺⣻▟⣽⣾█"
+braille6 = " ⠁⠂▘⠄⠅⠆⠇⠈▔⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗▝⠙⠚▀⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"
+braille8 = "⡀⡁⡂⡃▖⡅⡆▌⡈⡉⡊⡋⡌⡍⡎⡏⡐⡑⡒⡓⡔⡕⡖⡗⡘⡙⡚⡛▞⡝⡞▛⡠⡡⡢⡣⡤⡥⡦⡧⡨⡩⡪⡫⡬⡭⡮⡯⡰⡱⡲⡳⡴⡵⡶⡷⡸⡹⡺⡻⡼⡽⡾⡿⢀⢁⢂⢃⢄⢅⢆⢇⢈⢉⢊⢋⢌⢍⢎⢏⢐⢑⢒" \
+           "⢓⢔⢕⢖⢗⢘⢙⢚⢛⢜⢝⢞⢟▗⢡⢢▚⢤⢥⢦⢧⢨⢩⢪⢫⢬⢭⢮⢯⢰⢱⢲⢳⢴⢵⢶⢷▐⢹⢺▜⢼⢽⢾⢿▂⣁⣂⣃⣄⣅⣆⣇⣈⣉⣊⣋⣌⣍⣎⣏⣐⣑⣒⣓⣔⣕⣖⣗⣘⣙⣚⣛⣜⣝⣞⣟⣠⣡⣢⣣▃⣥" \
+           "⣦▙⣨⣩⣪⣫⣬⣭⣮⣯⣰⣱⣲⣳⣴⣵▅⣷⣸⣹⣺⣻▟⣽⣾█"
 braille = braille6 + braille8
+
 
 def pixels2Char(pixels: npt.NDArray):
     if len(pixels.shape) > 1 or len(pixels) != 8:
@@ -18,13 +21,12 @@ def pixels2Char(pixels: npt.NDArray):
     # pixels = [1,1,1,1,1,1,1,1]
     converted = [pixels[7], pixels[3], pixels[6], pixels[5], pixels[4], pixels[2], pixels[1], pixels[0]]
 
-
     index = int("0b" + "".join("1" if x else "0" for x in converted), 2)
 
     return braille[index]
 
 
-def split_to_char(image_: Image.Image) -> tuple[np.ndarray,Image.Image]:
+def split_to_char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     """
     Splits an image up into PixelsPerChar sized chunks.
     Results in shape (rows,cols,8) last axis where 8 is the pixels in the chunk flattened into a 1D array
@@ -62,8 +64,7 @@ def split_to_char(image_: Image.Image) -> tuple[np.ndarray,Image.Image]:
             data[y, x] = bw.flatten('F')
             array[yCoords[0]:yCoords[1], xCoords[0]:xCoords[1]] = bw * 255
 
-    im = Image.fromarray(array)
-    im.save(f"./build/twotone.png")
+    if Flags.DEBUG:
+        Image.fromarray(array).save(f"./build/twotone.png")
 
-    return data,im
-
+    return data, array

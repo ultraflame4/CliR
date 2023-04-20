@@ -5,6 +5,7 @@ from rich.console import Console
 
 from CliR.chartools import PixelsPerChar, split_to_char, pixels2Char
 from CliR.colorer import color_twotone, color_char
+from CliR.core import Flags
 
 
 def render(source_: Image.Image, out_size=(500, 500)):
@@ -21,11 +22,12 @@ def render(source_: Image.Image, out_size=(500, 500)):
     image = source_.resize(FinalImageSize)
     gray = source_.resize(FinalImageSize).convert("L")
 
-    os.makedirs("./build", exist_ok=True)
-    image.save("./build/resized.png")
-    gray.save("./build/gray.png")
+    if Flags.DEBUG:
+        os.makedirs("./build", exist_ok=True)
+        image.save("./build/resized.png")
+        gray.save("./build/gray.png")
 
-    data,mask = split_to_char(gray)
+    data, mask = split_to_char(gray)
 
     chars = []
     for row in data:
@@ -36,6 +38,5 @@ def render(source_: Image.Image, out_size=(500, 500)):
 
     console = Console()
     string = color_char(image, chars, mask, 1)
-
 
     console.print(string)

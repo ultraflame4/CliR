@@ -39,9 +39,11 @@ def color_twotone(image_:Image.Image, im_mask:Image.Image):
                 else:
                     back.append(color[yCoords + py, xCoords + px])
 
+            # If there is no foreground, means in the mask the cell is all black aka only background because not enough
+            # features in the pixels for there to be represented by the char set
+            if len(fore) != 0:
+                data[y, x, 0] = np.mean(fore, axis=0)
 
-
-            data[y,x,0] = np.mean(fore,axis=0)
-            data[y,x,1] = np.mean(back,axis=0)
+            data[y,x,1] = np.mean(back, axis=0)
 
     return data

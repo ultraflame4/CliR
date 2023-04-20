@@ -1,8 +1,10 @@
+import concurrent.futures
 import os
 
 from PIL import Image
+from rich.progress import track
 from rich.text import Text
-
+import numpy.typing as npt
 from CliRenderer.chartools import PixelsPerChar, split_to_char, pixels2Char
 from CliRenderer.colorer import color_twotone, color_char
 from CliRenderer.core import Flags

@@ -8,7 +8,7 @@ from CliR.colorer import color_twotone, color_char
 from CliR.core import Flags
 
 
-def render(source_: Image.Image, out_size=(500, 500),bg_intensity=1)->Text:
+def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1)->Text:
     """
     Renders a single image into unicode text.
 

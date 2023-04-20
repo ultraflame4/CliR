@@ -15,14 +15,7 @@ def cli_main(source: Path,
          bg_intensity: float = typer.Option(1.0,"--bg-intensity","-bgi", min=0.0, max=1.0, help="The intensity of the background. The closer to 0 the darker the background.")
          ):
     """
-
-    :param source:
-    :param width:
-    :param height:
-    :param autosize:
-    :param debug:
-    :param bg_intensity:
-    :return:
+    Renders the source image into the console as unicode art.
     """
 
     Flags.DEBUG = debug
@@ -37,7 +30,9 @@ def cli_main(source: Path,
 
 
 def main():
+
     typer.run(cli_main)
+
 
 if __name__ == "__main__":
     main()

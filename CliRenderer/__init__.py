@@ -49,6 +49,3 @@ def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1,skip_resize=F
 
     string = color_char(image, chars, mask, bg_intensity)
     return string
-
-def render_video():
-    pass

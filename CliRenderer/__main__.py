@@ -1,14 +1,11 @@
-import json
-import sys
 from pathlib import Path
 
 import typer as typer
 from PIL import Image
 from rich.console import Console
 import imageio as iio
-from rich.progress import track
 from io import StringIO
-from CliRenderer import render, Flags, render_frames
+from CliRenderer import render, Flags
 
 
 def cli_main(source: Path = typer.Argument(..., help="The path to source image."),
@@ -19,7 +16,7 @@ def cli_main(source: Path = typer.Argument(..., help="The path to source image."
                                            help="Automatically sets the output size to fit the terminal. Overrides --width and --height. Only works on supported terminals."),
 
              output: Path = typer.Option(None, "--out", "-o",
-                                         help="Saves the output to a file."),
+                                         help="Saves the output to a file. (Written as bytes)"),
              debug: bool = typer.Option(False,
                                         help="Enables debug mode. This will save the intermediate images to the build folder."),
              bg_intensity: float = typer.Option(1.0, "--bg-intensity", "-bgi", min=0.0, max=1.0,
@@ -48,10 +45,11 @@ def cli_main(source: Path = typer.Argument(..., help="The path to source image."
     if output is not None:
         typer.echo(f"Saving output to {output}...")
         output.parent.mkdir(parents=True, exist_ok=True)
-        with open(output, "w") as f:
-            f.write(string)
+        with open(output, "wb") as f:
+            f.write(string.encode("utf-16"))
 
     print(string)
+    print(f"Saved output to {output}... Read it using `cat {output}`")
 def main():
     typer.run(cli_main)
 

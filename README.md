@@ -11,8 +11,10 @@ See `clirender --help` for a list of options and arguments.
 
 ## Example Outputs:
 ![img.png](resources/img.png)
+[Original image from pexels](https://www.pexels.com/photo/view-of-high-rise-buildings-during-day-time-302769/)
 
 ![img.png](resources/img2.png)
+[Original image from pexels](https://www.pexels.com/photo/dock-under-cloudy-sky-in-front-of-mountain-206359/)
 
 ## How It Works
 

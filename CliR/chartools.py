@@ -32,6 +32,7 @@ def split_to_char(image_: Image.Image) -> tuple[np.ndarray,Image.Image]:
     :return: Returns the image chunks (rows,cols,8) and a mask of the image (rows,cols)
     """
     array: npt.NDArray = np.asarray(image_).copy()
+
     rows = array.shape[0] // PixelsPerChar[1]
     cols = array.shape[1] // PixelsPerChar[0]
     # print(array.flags)

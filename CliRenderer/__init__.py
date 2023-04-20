@@ -3,9 +3,9 @@ import os
 from PIL import Image
 from rich.text import Text
 
-from CliR.chartools import PixelsPerChar, split_to_char, pixels2Char
-from CliR.colorer import color_twotone, color_char
-from CliR.core import Flags
+from CliRenderer.chartools import PixelsPerChar, split_to_char, pixels2Char
+from CliRenderer.colorer import color_twotone, color_char
+from CliRenderer.core import Flags
 
 
 def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1)->Text:

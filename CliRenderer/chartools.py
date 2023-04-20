@@ -2,7 +2,7 @@ import numpy as np
 import numpy.typing as npt
 from PIL import Image
 
-from CliR.core import Flags
+from CliRenderer.core import Flags
 
 PixelsPerChar = (2, 4)
 PixelsPerCharCount = PixelsPerChar[0] * PixelsPerChar[1]

@@ -9,7 +9,7 @@ from rich.color import Color
 from rich.style import Style
 from rich.text import Text
 
-from CliR import PixelsPerChar
+from CliRenderer import PixelsPerChar
 
 
 def color_twotone(image_:Image.Image, mask:npt.NDArray[np.uint8]) -> np.ndarray[np.uint8]:

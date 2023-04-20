@@ -11,6 +11,7 @@ See `clirender --help` for a list of options and arguments.
 
 ## Example Outputs:
 ![img.png](resources/img.png)
+
 ![img.png](resources/img2.png)
 
 ## How It Works

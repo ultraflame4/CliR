@@ -1,7 +1,6 @@
 import os
 
 from PIL import Image
-from rich.console import Console
 from rich.text import Text
 
 from CliR.chartools import PixelsPerChar, split_to_char, pixels2Char

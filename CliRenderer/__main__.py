@@ -14,6 +14,16 @@ def cli_main(source: Path,
          debug: bool = typer.Option(False, help="Enables debug mode. This will save the intermediate images to the build folder."),
          bg_intensity: float = typer.Option(1.0,"--bg-intensity","-bgi", min=0.0, max=1.0, help="The intensity of the background. The closer to 0 the darker the background.")
          ):
+    """
+
+    :param source:
+    :param width:
+    :param height:
+    :param autosize:
+    :param debug:
+    :param bg_intensity:
+    :return:
+    """
 
     Flags.DEBUG = debug
     if autosize:

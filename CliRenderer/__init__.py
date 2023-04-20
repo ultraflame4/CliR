@@ -1,16 +1,15 @@
-import concurrent.futures
 import os
 
 from PIL import Image
-from rich.progress import track
+
 from rich.text import Text
-import numpy.typing as npt
+
 from CliRenderer.chartools import PixelsPerChar, split_to_char, pixels2Char
 from CliRenderer.colorer import color_twotone, color_char
 from CliRenderer.core import Flags
 
 
-def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1,skip_resize=False)->Text:
+def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize=False) -> Text:
     """
     Renders a single image into unicode text.
 
@@ -22,7 +21,6 @@ def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1,skip_resize=F
 
     FinalImageSize = (PixelsPerChar[0] * out_size[0], PixelsPerChar[1] * out_size[1])
 
-
     if not skip_resize:
         image = source_.resize(FinalImageSize).convert("RGB")
         gray = source_.resize(FinalImageSize).convert("L")
@@ -32,7 +30,6 @@ def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1,skip_resize=F
 
     if image.size != FinalImageSize:
         raise ValueError("The image size does not match the output size. Cannot skip resize!")
-
 
     if Flags.DEBUG:
         os.makedirs("./build", exist_ok=True)
@@ -47,7 +44,6 @@ def render(source_: Image.Image, out_size=(170, 50),bg_intensity=1,skip_resize=F
         for cell in row:
             char_row += pixels2Char(cell)
         chars.append(char_row)
-
 
     string = color_char(image, chars, mask, bg_intensity)
     return string

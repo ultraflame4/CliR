@@ -18,7 +18,7 @@ cat the contents like this
 cat the contents like this
 `Get-Content outfile -encoding UTF8`
 
-This is because the contents of the output files will be encoded in utf-8. powershell defaults to utf-16 for some reason.
+This is because the contents of the output files will be encoded in utf-8. powershell defaults to utf-7 for some reason.
 
 ----
 ## Example Outputs:

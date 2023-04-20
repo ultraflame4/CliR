@@ -7,7 +7,7 @@ from rich.console import Console
 from CliRenderer import render, Flags
 
 
-def cli_main(source: Path,
+def cli_main(source: Path = typer.Argument(...,help="The source image"),
          width: int = typer.Option(150, "--width", "-w", min=1, help="The width of the output in no. of characters."),
          height: int = typer.Option(50, "--height", "-h", min=1, help="The height of the output in no. of lines"),
          autosize: bool = typer.Option(False, help="Automatically sets the output size to fit the terminal. Overrides --width and --height. Only works on supported terminals."),

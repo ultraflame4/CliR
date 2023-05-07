@@ -10,7 +10,7 @@ import CliRenderer
 image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
 
 console = Console()
-txt2 = CliRenderer.render(image2, (170, 60))
+txt2 = CliRenderer.render(image2, (270, 120))
 
 console.print(txt2)
 

@@ -4,7 +4,7 @@ from PIL import Image
 
 from rich.text import Text
 
-from CliRenderer.chartools import PixelsPerChar, split_to_char, pixels2Char
+from CliRenderer.chartools import PixelsPerChar, split2char, pixels2Char
 from CliRenderer.colorer import color_twotone, color_char
 from CliRenderer.core import Flags
 
@@ -36,7 +36,7 @@ def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize
         image.save("./build/resized.png")
         gray.save("./build/gray.png")
 
-    data, mask = split_to_char(gray)
+    data, mask = split2char(gray)
 
     chars = []
     for row in data:

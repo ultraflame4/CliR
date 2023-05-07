@@ -26,7 +26,7 @@ def pixels2Char(pixels: npt.NDArray):
     return braille[index]
 
 
-def split_to_char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
+def split2char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     """
     Splits an image up into PixelsPerChar sized chunks.
     Results in shape (rows,cols,8) last axis where 8 is the pixels in the chunk flattened into a 1D array
@@ -68,3 +68,4 @@ def split_to_char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
         Image.fromarray(array).save(f"./build/twotone.png")
 
     return data, array
+

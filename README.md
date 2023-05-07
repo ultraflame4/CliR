@@ -8,7 +8,19 @@ Check the releases page for the latest version and instructions on how to instal
 ## Usage
 See `clirender --help` for a list of options and arguments.
 
+### Notice when reading output
 
+#### Linux
+cat the contents like this
+`cat outfile`
+
+#### Windows Powershell
+cat the contents like this
+`Get-Content outfile -encoding UTF8`
+
+This is because the contents of the output files will be encoded in utf-8. powershell defaults to utf-7 for some reason.
+
+----
 ## Example Outputs:
 ![img.png](resources/img.png)
 [Original image from pexels](https://www.pexels.com/photo/view-of-high-rise-buildings-during-day-time-302769/)

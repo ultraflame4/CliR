@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.typing as npt
 from PIL import Image
-
+import numba as nb
 from CliRenderer.core import Flags
 
 PixelsPerChar = (2, 4)
@@ -24,7 +24,6 @@ def pixels2Char(pixels: npt.NDArray):
     index = int("0b" + "".join("1" if x else "0" for x in converted), 2)
 
     return braille[index]
-
 
 def generateColoredChars(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     """

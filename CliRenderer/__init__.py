@@ -22,9 +22,9 @@ def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize
     FinalImageSize = (PixelsPerChar[0] * out_size[0], PixelsPerChar[1] * out_size[1])
 
     if not skip_resize:
-        image = source_.resize(FinalImageSize).convert("RGB")
+        image = source_.resize(FinalImageSize)
     else:
-        image = source_.convert("RGB")
+        image = source_
     if image.size != FinalImageSize:
         raise ValueError("The image size does not match the output size. Cannot skip resize!")
 

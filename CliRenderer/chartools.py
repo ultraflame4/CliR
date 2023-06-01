@@ -34,7 +34,7 @@ def generateColoredChars(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     :return: Returns the image chunks (rows,cols,8) and a colors to use (rows,cols, (fore color, back color))
     """
     grayscale: npt.NDArray = np.asarray(image_.convert("L")).copy()
-    sample: npt.NDArray = np.asarray(image_.convert("RGB")).copy()
+    sample: npt.NDArray = np.asarray(image_.convert("RGBA")).copy()
 
     rows = grayscale.shape[0] // PixelsPerChar[1]
     cols = grayscale.shape[1] // PixelsPerChar[0]

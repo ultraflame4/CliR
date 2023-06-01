@@ -9,7 +9,7 @@ import CliRenderer
 
 
 CliRenderer.Flags.DEBUG=False
-Test_Count = 10
+Test_Count = 20
 
 image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
 console = Console()

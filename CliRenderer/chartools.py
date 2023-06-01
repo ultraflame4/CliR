@@ -38,7 +38,7 @@ def split2char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     rows = array.shape[0] // PixelsPerChar[1]
     cols = array.shape[1] // PixelsPerChar[0]
     # print(array.flags)
-    if len(array.shape) > 2:
+    if len(array.shape) != 2:
         raise Exception("Error, image must only be grayscale")
 
     data = np.zeros((rows, cols, PixelsPerCharCount), dtype=bool)

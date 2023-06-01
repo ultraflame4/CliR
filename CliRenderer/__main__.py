@@ -1,5 +1,8 @@
+import importlib.metadata
 from pathlib import Path
 
+import colorama
+import rich
 import typer as typer
 from PIL import Image
 from rich.console import Console
@@ -51,6 +54,8 @@ def cli_main(source: Path = typer.Argument(..., help="The path to source image."
     print(string)
     print(f"Saved output to {output}... Read it using `cat {output}`")
 def main():
+    rich.print(f"[bold white]CliRenderer installed version: {importlib.metadata.version('CliRenderer')}.[/bold white]")
+    rich.print("[grey37]Version shown may not be accurate! (especially you are running from source!)[/grey37]\n")
     typer.run(cli_main)
 
 

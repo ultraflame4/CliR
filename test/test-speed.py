@@ -11,17 +11,25 @@ import CliRenderer
 CliRenderer.Flags.DEBUG=False
 Test_Count = 20
 
-image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
+image = Image.open("../resources/pexels-pixabay-206359.jpg")
+image2 = Image.open("../resources/pexels-photo-302769.jpeg")
 console = Console()
 
 timings = []
 
 for i in range(Test_Count):
     start_time = time.time()
+    txt = CliRenderer.render(image)
+    resultA = (time.time()-start_time)*1000
+    print(f"Test {i} A: {resultA} ms")
+
+    start_time = time.time()
     txt2 = CliRenderer.render(image2)
-    result = (time.time()-start_time)*1000
-    print(f"Test {i}: {result} ms")
-    timings.append(result)
+    resultB = (time.time() - start_time) * 1000
+    print(f"Test {i} B: {resultB} ms")
+
+    timings.append(resultA)
+    timings.append(resultB)
 
 print(f"Average timings: {sum(timings)/len(timings)} ms")
 print(f"Biggest: {max(timings)} ms")

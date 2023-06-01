@@ -6,11 +6,14 @@ from rich.console import Console
 
 import CliRenderer
 
-# image = Image.open("./resources/pexels-photo-302769.jpeg")
-image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
 
+CliRenderer.Flags.DEBUG=True
+
+# image = Image.open("./resources/pexels-photo-302769.jpeg")
+print("test")
+image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
 console = Console()
-txt2 = CliRenderer.render(image2, (270, 120))
+txt2 = CliRenderer.render(image2)
 
 console.print(txt2)
 

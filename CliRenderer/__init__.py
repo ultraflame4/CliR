@@ -4,8 +4,8 @@ from PIL import Image
 
 from rich.text import Text
 
-from CliRenderer.chartools import PixelsPerChar, split2char, pixels2Char
-from CliRenderer.colorer import color_twotone, color_char
+from CliRenderer.chartools import PixelsPerChar, generateColoredChars, pixels2Char
+from CliRenderer.colorer import color_char
 from CliRenderer.core import Flags
 
 
@@ -23,20 +23,17 @@ def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize
 
     if not skip_resize:
         image = source_.resize(FinalImageSize).convert("RGB")
-        gray = source_.resize(FinalImageSize).convert("L")
     else:
         image = source_.convert("RGB")
-        gray = source_.convert("L")
-
     if image.size != FinalImageSize:
         raise ValueError("The image size does not match the output size. Cannot skip resize!")
 
     if Flags.DEBUG:
         os.makedirs("./build", exist_ok=True)
         image.save("./build/resized.png")
-        gray.save("./build/gray.png")
 
-    data, mask = split2char(gray)
+
+    data, charcolors = generateColoredChars(image)
 
     chars = []
     for row in data:
@@ -45,5 +42,6 @@ def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize
             char_row += pixels2Char(cell)
         chars.append(char_row)
 
-    string = color_char(image, chars, mask, bg_intensity)
+    string = color_char( chars, charcolors, bg_intensity)
     return string
+    # return ""

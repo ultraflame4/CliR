@@ -26,22 +26,26 @@ def pixels2Char(pixels: npt.NDArray):
     return braille[index]
 
 
-def split2char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
+def generateColoredChars(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     """
     Splits an image up into PixelsPerChar sized chunks.
     Results in shape (rows,cols,8) last axis where 8 is the pixels in the chunk flattened into a 1D array
     :param image_:
-    :return: Returns the image chunks (rows,cols,8) and a mask of the image (rows,cols)
+    :return: Returns the image chunks (rows,cols,8) and a colors to use (rows,cols, (fore color, back color))
     """
-    array: npt.NDArray = np.asarray(image_).copy()
+    grayscale: npt.NDArray = np.asarray(image_.convert("L")).copy()
+    sample: npt.NDArray = np.asarray(image_.convert("RGB")).copy()
 
-    rows = array.shape[0] // PixelsPerChar[1]
-    cols = array.shape[1] // PixelsPerChar[0]
+    rows = grayscale.shape[0] // PixelsPerChar[1]
+    cols = grayscale.shape[1] // PixelsPerChar[0]
     # print(array.flags)
-    if len(array.shape) != 2:
-        raise Exception("Error, image must only be grayscale")
+    if len(grayscale.shape) != 2:
+        raise Exception("Error, image array is not grayscale!")
 
     data = np.zeros((rows, cols, PixelsPerCharCount), dtype=bool)
+    colors = np.zeros((rows, cols, 2, sample.shape[2]), dtype=np.uint8)
+    # print(sample.shape)
+    # print(grayscale.shape)
     for y in range(rows):
         for x in range(cols):
             yCoords = (
@@ -52,20 +56,30 @@ def split2char(image_: Image.Image) -> tuple[np.ndarray, np.ndarray]:
                 x * PixelsPerChar[0],
                 (x + 1) * PixelsPerChar[0],
             )
-            cell = array[yCoords[0]:yCoords[1], xCoords[0]:xCoords[1]]
+            cell = grayscale[yCoords[0]:yCoords[1], xCoords[0]:xCoords[1]]
 
-            min_ = int(np.amin(cell, axis=(0, 1)))
-            max_ = int(np.amax(cell, axis=(0, 1)))
+            min_index = int(np.argmin(cell))
+            unraveled_min = np.unravel_index(min_index, PixelsPerChar[::-1])
+            max_index = int(np.argmax(cell))
+            unraveled_max = np.unravel_index(max_index, PixelsPerChar[::-1])
+            # print(cell.shape)
 
-            mid = (max_ + min_) // 2
-            # print(mid,cell[0,0],min_,max_)
+            min_ = int(
+                cell[unraveled_min[0], unraveled_min[1]])  # convert to python int to stop runtime overflow warnings
+            max_ = int(cell[unraveled_max[0], unraveled_max[1]])
+
+            mid = (min_ + max_) // 2
             bw = (cell > mid)
-            # print(yCoords,xCoords,list(bw))
+
             data[y, x] = bw.flatten('F')
-            array[yCoords[0]:yCoords[1], xCoords[0]:xCoords[1]] = bw * 255
+
+            colored_cell = sample[yCoords[0]:yCoords[1], xCoords[0]:xCoords[1]]
+
+            colors[y, x, 0] = colored_cell[unraveled_max[0],unraveled_max[1]]
+            colors[y, x, 1] = colored_cell[unraveled_min[0],unraveled_min[1]]
 
     if Flags.DEBUG:
-        Image.fromarray(array).save(f"./build/twotone.png")
+        Image.fromarray(grayscale).save(f"./build/twotone.png")
+        Image.fromarray(sample).save(f"./build/char-color.png")
 
-    return data, array
-
+    return data, colors

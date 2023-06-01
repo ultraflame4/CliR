@@ -24,7 +24,7 @@ def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1
     """
 
     string = Text()
-    print(charcolors.shape, len(chars))
+
     for y, row in enumerate(chars):
         for x, char in enumerate(row):
             rawfore_ = charcolors[y, x, 0]

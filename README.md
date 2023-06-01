@@ -3,7 +3,7 @@
 A text renderer that renders unicode art from images to the terminal
 
 ## Installation
-Check the releases page for the latest version and instructions on how to install it.
+**Install the latest version with**: `pip install CliRenderer`
 
 ## Usage
 See `clirender --help` for a list of options and arguments.

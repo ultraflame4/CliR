@@ -1,7 +1,6 @@
 import numpy as np
 import numpy.typing as npt
 from PIL import Image
-import numba as nb
 from CliRenderer.core import Flags
 
 PixelsPerChar = (2, 4)

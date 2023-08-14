@@ -1,6 +1,6 @@
 [project]
 name = "CliRenderer"
-version = "0.1.6.post2"
+version = "0.1.6.post3"
 requires-python = ">=3.9"
 authors = [
     { name = "ultraflame4", email = "ultraflame4@gmail.com" }
@@ -13,9 +13,9 @@ dependencies = [
     "numpy~=1.24.2",
     "Pillow~=9.5.0",
     "rich~=13.3.4",
-    "CliRenderer~=0.1.0",
     "typer~=0.7.0",
-    "imageio~=2.27.0"
+    "imageio~=2.27.0",
+    "validators~=0.21.2"
 ]
 
 [project.urls]

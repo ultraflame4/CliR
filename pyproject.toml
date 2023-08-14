@@ -1,5 +1,33 @@
 [project]
+name = "CliRenderer"
+version = "0.1.6.post2"
 requires-python = ">=3.9"
+authors = [
+    { name = "ultraflame4", email = "ultraflame4@gmail.com" }
+]
+description = "A CLI tool to render unicode art in the terminal"
+readme = "README.md"
+keywords = ["cli", "unicode", "art", "render", "terminal"]
+license = { file = "LICENSE" }
+dependencies = [
+    "numpy~=1.24.2",
+    "Pillow~=9.5.0",
+    "rich~=13.3.4",
+    "CliRenderer~=0.1.0",
+    "typer~=0.7.0",
+    "imageio~=2.27.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ultraflame4/CliR"
+"Bug Tracker" = "https://github.com/ultraflame4/CliR/issues"
+
+[project.scripts]
+clirender = "CliRenderer.__main__:main"
+
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = ["setuptools", "wheel"]
+
+[tool.setuptools]
+py-modules = ["CliRenderer"]

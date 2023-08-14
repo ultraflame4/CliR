@@ -1,2 +1,0 @@
-class Flags:
-    DEBUG = False

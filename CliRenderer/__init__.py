@@ -1,3 +1,4 @@
+import dataclasses
 import os
 
 from PIL import Image
@@ -6,10 +7,14 @@ from rich.text import Text
 
 from CliRenderer.chartools import PixelsPerChar, generateColoredChars, pixels2Char
 from CliRenderer.colorer import color_char
-from CliRenderer.core import Flags
+from CliRenderer.utils import Flags
 
-
-def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize=False) -> Text:
+@dataclasses.dataclass
+class RenderOutput:
+    data: Text = None
+    im_size: tuple[int,int] = None
+    char_size: tuple[int,int] = None
+def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize=False) -> RenderOutput:
     """
     Renders a single image into unicode text.
 
@@ -18,8 +23,14 @@ def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize
     :return: returns a rich Text object to be printed to the console with rich
     :param skip_resize: If set to true, the image will not be resized. This is useful if the image is already the correct size.
     """
+    renderOutput = RenderOutput()
+
+    if Flags.KEEP_ASPECT:
+        out_size = utils.ppc_resize(out_size[0], out_size[1], source_.width / source_.height, PixelsPerChar)
 
     FinalImageSize = (PixelsPerChar[0] * out_size[0], PixelsPerChar[1] * out_size[1])
+    renderOutput.im_size = FinalImageSize
+    renderOutput.char_size = out_size
 
     if not skip_resize:
         image = source_.resize(FinalImageSize)
@@ -43,5 +54,5 @@ def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize
         chars.append(char_row)
 
     string = color_char( chars, charcolors, bg_intensity)
-    return string
-    # return ""
+    renderOutput.data = string
+    return renderOutput

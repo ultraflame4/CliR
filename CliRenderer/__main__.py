@@ -60,7 +60,6 @@ def cli_main(source: str = typer.Argument(..., help="The path to source image.",
 
 
 def main():
-    importlib.metadata
     rich.print(f"[bold white]CliRenderer installed version: {importlib.metadata.version('CliRenderer')}.[/bold white] {'dev mode on' if isDev else ''}")
     rich.print("[grey37]Version shown may not be accurate! (especially you are running from source!)[/grey37]\n")
     typer.run(cli_main)

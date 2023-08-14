@@ -11,7 +11,7 @@ from io import StringIO
 from CliRenderer import render, Flags
 from CliRenderer.utils import parse_pathoruri
 
-isDev = True
+isDev = False
 
 
 def cli_main(source: str = typer.Argument(..., help="The path to source image.", parser = parse_pathoruri),

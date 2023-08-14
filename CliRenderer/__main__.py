@@ -1,4 +1,5 @@
 import importlib.metadata
+import time
 from pathlib import Path
 
 import rich
@@ -32,7 +33,7 @@ def cli_main(source: str = typer.Argument(..., help="The path to source image.",
     """
     Renders the source image into the console as unicode art.
     """
-
+    start_time = time.time()
     Flags.DEBUG = debug
     Flags.KEEP_ASPECT = keep_aspect
     console = Console(file=StringIO(), record=True)
@@ -55,6 +56,7 @@ def cli_main(source: str = typer.Argument(..., help="The path to source image.",
             f.write(string.encode("utf-8"))
         print(f"Saved output to {output}... Read it using `cat {output}`")
 
+    print(f"Finished in {time.time() - start_time} seconds")
 
 
 def main():

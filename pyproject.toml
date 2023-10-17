@@ -1,6 +1,6 @@
 [project]
 name = "CliRenderer"
-version = "0.1.6.post4"
+version = "0.1.7"
 requires-python = ">=3.9"
 authors = [
     { name = "ultraflame4", email = "ultraflame4@gmail.com" }
@@ -9,14 +9,6 @@ description = "A CLI tool to render unicode art in the terminal"
 readme = "README.md"
 keywords = ["cli", "unicode", "art", "render", "terminal"]
 license = { file = "LICENSE" }
-dependencies = [
-    "numpy~=1.24.2",
-    "Pillow~=9.5.0",
-    "rich~=13.3.4",
-    "typer~=0.9.0",
-    "imageio~=2.27.0",
-    "validators~=0.21.2"
-]
 
 [project.urls]
 "Homepage" = "https://github.com/ultraflame4/CliR"
@@ -25,9 +17,29 @@ dependencies = [
 [project.scripts]
 clirender = "CliRenderer.__main__:main"
 
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools", "wheel"]
+#[build-system]
+#build-backend = "setuptools.build_meta"
+#requires = ["setuptools", "wheel"]
 
 [tool.setuptools]
 packages = ["CliRenderer"]
+
+[tool.poetry]
+name = "CliRenderer"
+version = "0.1.6"
+description = ""
+authors = ["ultr42 <ultraflame4@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+numpy = "~1.26.1"
+Pillow = "^10.1.0"
+rich = "~13.6.0"
+typer = "~0.9.0"
+imageio = "~2.31.5"
+validators = "~0.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

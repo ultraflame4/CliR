@@ -17,7 +17,7 @@ image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
 CliRenderer.ext.test()
 print("testa")
 txt2 = CliRenderer.render(image2,out_size=(200,1000))
-# print(txt2.data)
+print(txt2.data)
 # console.print(txt2)
 
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -3,11 +3,14 @@ Contain functions related to coloring the text
 """
 
 import numpy as np
-from rich.color import Color
-from rich.style import Style
-from rich.text import Text
 
-def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1):
+def ansi_rgb_fore(color: np.ndarray):
+    return f"\033[38;2;{color[0]};{color[1]};{color[2]}m"
+
+def ansi_rgb_back(color: np.ndarray):
+    return f"\033[48;2;{color[0]};{color[1]};{color[2]}m"
+
+def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1) -> str:
     """
     Colors a string of text using the source image.
 
@@ -18,7 +21,7 @@ def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1
     :return:
     """
 
-    string = Text()
+    string = ""
 
     for y, row in enumerate(chars):
         for x, char in enumerate(row):
@@ -31,11 +34,8 @@ def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1
             # The same goes for the foreground color (which is the brightest), but it is blended with the background color instead
             fore_ = rawfore_ * 0.8 + rawback_ * 0.2
             back_ = (rawfore_ * 0.2 + rawback_ * 0.8) * bg_intensity
+            string += ansi_rgb_fore(fore_.astype(int))+ansi_rgb_back(back_.astype(int))+char
 
-            fore = Color.from_rgb(fore_[0], fore_[1], fore_[2])
-            back = Color.from_rgb(back_[0], back_[1], back_[2])
-            style = Style(color=fore, bold=True, bgcolor=back)
-            string.append(char, style=style)
         string += "\r\n"
 
     return string

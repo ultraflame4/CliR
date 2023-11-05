@@ -1,9 +1,6 @@
 import dataclasses
 import os
-
 from PIL import Image
-
-from rich.text import Text
 
 from CliRenderer.chartools import PixelsPerChar, generateColoredChars, pixels2Char
 from CliRenderer.colorer import color_char
@@ -11,7 +8,7 @@ from CliRenderer.utils import Flags
 
 @dataclasses.dataclass
 class RenderOutput:
-    data: Text = None
+    data: str = None
     im_size: tuple[int,int] = None
     char_size: tuple[int,int] = None
 def render(source_: Image.Image, out_size=(170, 50), bg_intensity=1, skip_resize=False) -> RenderOutput:

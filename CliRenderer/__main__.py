@@ -5,9 +5,7 @@ from pathlib import Path
 import rich
 import typer as typer
 from PIL import Image
-from rich.console import Console
 import imageio as iio
-from io import StringIO
 from CliRenderer import render, Flags
 from CliRenderer.utils import parse_pathoruri
 
@@ -36,8 +34,6 @@ def cli_main(source: str = typer.Argument(..., help="The path to source image.",
     start_time = time.time()
     Flags.DEBUG = debug
     Flags.KEEP_ASPECT = keep_aspect
-    console = Console(file=StringIO(), record=True)
-
     if autosize:
         import shutil
         width, height = shutil.get_terminal_size()
@@ -45,8 +41,7 @@ def cli_main(source: str = typer.Argument(..., help="The path to source image.",
     source_image = Image.fromarray(iio.v3.imread(source))
     result = render(source_image, (width, height), bg_intensity)
 
-    console.print(result.data)
-    string = console.export_text(styles=True)
+    string = result.data
     print(string)
     print(f"Final image resolution: Character Size ({result.char_size}) Image Size ({result.im_size})")
     if output is not None:

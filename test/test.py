@@ -20,4 +20,4 @@ txt2 = CliRenderer.render(image2,out_size=(200,1000))
 print(txt2.data)
 # console.print(txt2)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+print("\n\n--- %s seconds ---" % (time.time() - start_time))

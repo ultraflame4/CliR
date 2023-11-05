@@ -51,7 +51,7 @@ def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1
                 False
             ) + char
 
-        string += "\r\n"
+        string += "\033[m\r\n"
 
 
     return string

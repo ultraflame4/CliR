@@ -4,6 +4,8 @@ project(clir_cpp)
 add_library(
         clir_cpplib SHARED
         src/testmodule.cc
+        src/charcolor.cc
+        src/main.cc
 )
 
 

@@ -5,7 +5,11 @@ from setuptools import Extension
 from setuptools.command.build_ext import build_ext
 
 extensions = [
-    Extension("CliRenderer.ext", sources=["ext/src/testmodule.cc"]),
+    Extension("CliRenderer.ext", sources=[
+        "ext/src/main.cc",
+        "ext/src/testmodule.cc",
+        "ext/src/charcolor.cc",
+    ]),
 ]
 
 

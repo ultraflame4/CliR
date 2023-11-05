@@ -1,2 +1,9 @@
 /venv/
 /build/**/*
+poetry.lock
+setup.py
+/dist/**/*
+/CliRenderer.egg-info/**/*
+**/cmake-build-debug/**/*
+**/.idea/**
+/CliRenderer/*.pyd

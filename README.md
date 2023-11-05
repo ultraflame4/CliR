@@ -8,6 +8,36 @@ A text renderer that renders unicode art from images to the terminal
 ## Usage
 See `clirender --help` for a list of options and arguments.
 
+## Development / Running test scripts.
+poetry is required for this project!
+
+There are couple of test scripts in the test folder used for testing & debugging.
+They are not unit tests.
+
+To run them do the following steps:
+1. Navigate into the test folder
+```shell
+$ cd test
+```
+2. Create virtual env for testing:
+```shell
+$ poetry shell
+```
+3Install and build the C extensions
+```shell
+$ poetry install
+```
+4. Run the script you want with python (eg. test.py)
+```shell
+$ python test.py
+```
+5. To exit the virtual environment
+```shell
+$ exit
+```
+
+
+
 ### Notice when reading output
 
 #### Linux

@@ -39,7 +39,13 @@ rich = "~13.6.0"
 typer = "~0.9.0"
 imageio = "~2.31.5"
 validators = "~0.22.0"
+setuptools = "^68.2.2"
+
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core","setuptools"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = true

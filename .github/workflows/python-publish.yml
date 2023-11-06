@@ -35,9 +35,9 @@ jobs:
       with:
         python-version: '3.x'
     - name: Set up pooetry
-      run:
-        pip install poetry |
-        python -m poetry --version |
+      run: |
+        pip install poetry 
+        python -m poetry --version 
         ls -la
     - name: Build package
       run: python -m poetry build

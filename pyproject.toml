@@ -47,5 +47,5 @@ requires = ["poetry-core","setuptools","ninja"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.build]
-script = "build.py"
+script = "build_.py"
 generate-setup-file = true

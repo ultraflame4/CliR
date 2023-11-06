@@ -42,6 +42,13 @@ jobs:
         ls -la
     - name: Build package
       run: python -m poetry build
+
+    - name: debug info
+      if: always()
+      run: |
+        echo $PWD
+        ls -la
+
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.os }}

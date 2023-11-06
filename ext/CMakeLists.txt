@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.26)
 project(clir_cpp)
 
 add_library(
@@ -8,11 +8,15 @@ add_library(
         src/main.cc
 )
 
+find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
 
-find_package(PythonInterp 3.9 REQUIRED)
+include_directories(${Python3_INCLUDE_DIRS})
+target_link_libraries(clir_cpplib ${Python3_LIBRARIES})
 
-# This goes after, since it uses PythonInterp as hint
-find_package(PythonLibs 3.9 REQUIRED)
-
-include_directories(${PYTHON_INCLUDE_DIRS})
-target_link_libraries(clir_cpplib ${PYTHON_LIBRARIES})
+set_target_properties(
+        clir_cpplib
+        PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "CliRenderer.ext"
+        LINKER_LANGUAGE CPP
+)

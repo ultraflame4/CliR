@@ -43,7 +43,7 @@ setuptools = "^68.2.2"
 
 
 [build-system]
-requires = ["poetry-core","setuptools"]
+requires = ["poetry-core","setuptools","ninja"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.build]

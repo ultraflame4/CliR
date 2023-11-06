@@ -78,6 +78,8 @@ class ExtBuilder(build_ext):
 
             if not Path(self.build_temp).exists():
                 os.makedirs(self.build_temp)
+
+        print(f"Files at {os.getcwd()}:\n",os.listdir(os.getcwd()))
         # Cmake Config
         subprocess.check_call(['cmake', ext.cmakelist_dir] + cmake_args,
                               cwd=self.build_temp)

@@ -5,18 +5,18 @@ import time
 start_time = time.time()
 from PIL import Image
 
-import CliRenderer
+import clirenderer
 
 
-CliRenderer.Flags.DEBUG=False
+clirenderer.Flags.DEBUG=False
 
 # image = Image.open("./resources/pexels-photo-302769.jpeg")
 
 image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
 
-CliRenderer.ext.test()
+clirenderer.ext.test()
 print("testa")
-txt2 = CliRenderer.render(image2,out_size=(200,1000))
+txt2 = clirenderer.render(image2, out_size=(200, 1000))
 print(txt2.data)
 # console.print(txt2)
 

@@ -6,8 +6,8 @@ import rich
 import typer as typer
 from PIL import Image
 import imageio as iio
-from CliRenderer import render, Flags
-from CliRenderer.utils import parse_pathoruri
+from clirenderer import render, Flags
+from clirenderer.utils import parse_pathoruri
 
 isDev = False
 

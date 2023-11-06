@@ -5,10 +5,10 @@ import time
 from PIL import Image
 from rich.console import Console
 
-import clirenderer
+import CliRenderer
 
 
-clirenderer.Flags.DEBUG=False
+CliRenderer.Flags.DEBUG=False
 Test_Count = 20
 
 image = Image.open("../resources/pexels-pixabay-206359.jpg")
@@ -19,12 +19,12 @@ timings = []
 
 for i in range(Test_Count):
     start_time = time.time()
-    txt = clirenderer.render(image)
+    txt = CliRenderer.render(image)
     resultA = (time.time()-start_time)*1000
     print(f"Test {i} A: {resultA} ms")
 
     start_time = time.time()
-    txt2 = clirenderer.render(image2)
+    txt2 = CliRenderer.render(image2)
     resultB = (time.time() - start_time) * 1000
     print(f"Test {i} B: {resultB} ms")
 

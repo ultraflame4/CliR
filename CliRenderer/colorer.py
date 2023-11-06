@@ -3,7 +3,7 @@ Contain functions related to coloring the text
 """
 
 import numpy as np
-from clirenderer.ext import ansi_color
+from CliRenderer.ext import ansi_color
 
 
 def ansi_rgb_fore(color: np.ndarray):

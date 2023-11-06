@@ -2,11 +2,11 @@ import dataclasses
 import os
 from PIL import Image
 
-from clirenderer.ext import test
+from CliRenderer.ext import test
 
-from clirenderer.chartools import PixelsPerChar, generateColoredChars, pixels2Char
-from clirenderer.colorer import color_char
-from clirenderer.utils import Flags
+from CliRenderer.chartools import PixelsPerChar, generateColoredChars, pixels2Char
+from CliRenderer.colorer import color_char
+from CliRenderer.utils import Flags
 
 @dataclasses.dataclass
 class RenderOutput:

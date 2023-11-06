@@ -39,7 +39,7 @@ jobs:
         pip install poetry 
         python -m poetry --version 
         python -m poetry config virtualenvs.in-project true
-        ls -la
+        ls
     - name: Build package
       run: python -m poetry build
 
@@ -47,7 +47,7 @@ jobs:
       if: always()
       run: |
         echo $PWD
-        ls -la
+        ls
 
     - uses: actions/upload-artifact@v3
       with:

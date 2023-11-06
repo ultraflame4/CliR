@@ -26,7 +26,7 @@ packages = ["CliRenderer"]
 
 [tool.poetry]
 name = "CliRenderer"
-version = "0.1.6"
+version = "0.1.8.dev0+cppmod"
 description = ""
 authors = ["ultr42 <ultraflame4@gmail.com>"]
 readme = "README.md"

@@ -43,23 +43,29 @@ class ExtBuilder(build_ext):
         except OSError:
             raise RuntimeError("Cannot find CMake executable! Is cmake in path?")
 
-        extdir = Path(self.get_ext_fullpath(ext.name)).absolute().parent
-        print("EXT DIR",extdir)
+        ext_path =  Path(self.get_ext_fullpath(ext.name)).absolute()
+        extdir = ext_path.parent
+        ext_name = ext_path.name
+
+        print("\n\n!!EXT DIR",extdir,"\n",ext_path,"\n\n")
         build_type = 'Debug' if self.debug == 'ON' else 'Release'
         cmake_args = [
-            f"-DCMAKE_BUILD_TYPE={build_type}",
+            f"-DCMAKE_BUILD_TYPE={build_type.upper()}",
             f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{build_type.upper()}={extdir}",
             f"-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_{build_type.upper()}={self.build_temp}",
-            f"-DPYTHON_EXECUTABLE={sys.executable}"
+            f"-DPYTHON_EXECUTABLE={sys.executable}",
+            f"-DCLIR_MOD_NAME={ext_name}",
         ]
 
         if platform.system() == 'Windows':
+
             plat = ('x64' if platform.architecture()[0] == '64bit' else 'Win32')
             cmake_args += [
                 # These options are likely to be needed under Windows
-                "-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE"
+                "-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE",
                 f"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY_{build_type.upper()}={extdir}"
             ]
+
             # Assuming that Visual Studio and MinGW are supported compilers
             if self.compiler.compiler_type == 'msvc':
                 cmake_args += [
@@ -72,10 +78,10 @@ class ExtBuilder(build_ext):
 
             if not Path(self.build_temp).exists():
                 os.makedirs(self.build_temp)
-            # Cmake Config
-            subprocess.check_call(['cmake', ext.cmakelist_dir] + cmake_args,
-                                  cwd=self.build_temp)
+        # Cmake Config
+        subprocess.check_call(['cmake', ext.cmakelist_dir] + cmake_args,
+                              cwd=self.build_temp)
 
-            subprocess.check_call(['cmake', '--build', '.', '--config', build_type], cwd=self.build_temp)
+        subprocess.check_call(['cmake', '--build', '.', '--config', build_type], cwd=self.build_temp)
 def build(setup_kwargs):
     setup_kwargs.update({"ext_modules": extensions, "cmdclass": {"build_ext": ExtBuilder}})

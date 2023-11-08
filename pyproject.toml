@@ -33,6 +33,11 @@ version = "0.1.8.dev0+cppmod"
 description = ""
 authors = ["ultr42 <ultraflame4@gmail.com>"]
 readme = "README.md"
+include = [
+    { path = "ext/CMakeLists.txt", format = "sdist" },
+    { path = "ext/src/*.cc", format = "sdist" },
+    { path = "CliRenderer/*.pyd", format = "wheel" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"

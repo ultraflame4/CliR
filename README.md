@@ -53,11 +53,14 @@ This is because the contents of the output files will be encoded in utf-8. power
 ----
 ## Example Outputs:
 ![img.png](resources/img.png)
-[Original image from pexels](https://www.pexels.com/photo/view-of-high-rise-buildings-during-day-time-302769/)
+Original - [Pixabay. (2017, February 25). View Of High Rise Buildings during Day Time](https://www.pexels.com/photo/view-of-high-rise-buildings-during-day-time-302769/)
 
 ![img.png](resources/img2.png)
-[Original image from pexels](https://www.pexels.com/photo/dock-under-cloudy-sky-in-front-of-mountain-206359/)
+Original - [Pixabay. (2017b, March 29). Dock under cloudy sky in front of mountain](https://www.pexels.com/photo/dock-under-cloudy-sky-in-front-of-mountain-206359/)
 
+## Credits
+1. Pixabay. (2017, February 25). View Of High Rise Buildings during Day Time. Pexels. https://www.pexels.com/photo/view-of-high-rise-buildings-during-day-time-302769/
+2. Pixabay. (2017b, March 29). Dock under cloudy sky in front of mountain. Pexels. https://www.pexels.com/photo/dock-under-cloudy-sky-in-front-of-mountain-206359/
 ## How It Works
 
 ### Disclaimer

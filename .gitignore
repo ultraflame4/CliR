@@ -5,8 +5,9 @@ setup.py
 /dist/**/*
 /CliRenderer.egg-info/**/*
 **/cmake-build-debug/**/*
-**/.idea/**
+**/.idea/
 /CliRenderer/*.pyd
 *.pyc
-.cache/*
-.fleet/*
+.cache/
+.fleet/
+_skbuild/

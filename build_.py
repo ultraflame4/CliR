@@ -11,7 +11,7 @@ def build(setup_kwargs):
     skbuild.setup(
         **setup_kwargs,
         script_args=["build_ext"],
-        cmake_source_dir="ext"
+        cmake_source_dir="clir_cpplib"
     )
     ext_path = Path(skbuild.constants.CMAKE_INSTALL_DIR()) / "clir_cpp"
     pylib_path = Path("CliRenderer")

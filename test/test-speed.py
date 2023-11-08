@@ -1,4 +1,4 @@
-import init
+# import init
 from pathlib import Path
 import time
 
@@ -11,8 +11,8 @@ import CliRenderer
 CliRenderer.Flags.DEBUG=False
 Test_Count = 20
 
-image = Image.open("../resources/pexels-pixabay-206359.jpg")
-image2 = Image.open("../resources/pexels-photo-302769.jpeg")
+image = Image.open("./resources/pexels-pixabay-206359.jpg")
+image2 = Image.open("./resources/pexels-photo-302769.jpeg")
 console = Console()
 
 timings = []
@@ -32,7 +32,7 @@ for i in range(Test_Count):
     timings.append(resultB)
 
 print(f"Average timings: {sum(timings)/len(timings)} ms")
-print(f"Biggest: {max(timings)} ms")
-print(f"Smallest: {min(timings)} ms")
+print(f"Max time: {max(timings)} ms")
+print(f"Min: {min(timings)} ms")
 
 

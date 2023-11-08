@@ -12,7 +12,7 @@ CliRenderer.Flags.DEBUG=False
 
 # image = Image.open("./resources/pexels-photo-302769.jpeg")
 
-image2 = Image.open("../resources/pexels-pixabay-206359.jpg")
+image2 = Image.open("./resources/pexels-pixabay-206359.jpg")
 
 CliRenderer.clir_cpplib.test()
 print("testa")

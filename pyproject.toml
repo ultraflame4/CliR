@@ -2,6 +2,9 @@
 name = "CliRenderer"
 version = "0.1.8.dev0+cppmod"
 requires-python = ">=3.9"
+maintainers = [
+    { name = "ultraflame4", email = "ultraflame4@gmail.com" }
+]
 authors = [
     { name = "ultraflame4", email = "ultraflame4@gmail.com" }
 ]
@@ -43,7 +46,7 @@ setuptools = "^68.2.2"
 
 
 [build-system]
-requires = ["poetry-core","setuptools","ninja"]
+requires = ["poetry-core", "setuptools", "ninja"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.build]

@@ -24,7 +24,7 @@ def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1
     :param mask: The twotone mask
     :return:
     """
-    color_chars(chars)
+    color_chars(chars, charcolors)
     string = ""
 
     for y, row in enumerate(chars):

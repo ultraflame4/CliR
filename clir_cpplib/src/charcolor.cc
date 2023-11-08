@@ -1,4 +1,5 @@
 #include <Python.h>
+#include <numpy/arrayobject.h>
 #include <cstdint>
 #include <string>
 #include <iostream>
@@ -19,11 +20,21 @@ static void get_ansi_color(uint8_t r, uint8_t g, uint8_t b, std::string &out_s, 
 
 static PyObject *pyColorChars(PyObject * self, PyObject * args) {
     PyObject * chars;
-    if (!PyArg_ParseTuple(args, "O", &chars)) return nullptr;
+    PyObject * _charcolors;
+    if (!PyArg_ParseTuple(args, "OO", &chars, &_charcolors)) return nullptr;
 
     int chars_len = PyList_Size(chars);
     if (chars_len < 0) return nullptr;
 
+    // todo further update and specify ndarray requirements later on
+    if (!PyArray_Check(_charcolors)) {
+        PyErr_SetString(PyExc_TypeError, "Argument at position 2 is not a numpy array!");
+        return nullptr;
+    }
+    std::cout << "A passed a numpy array!";
+    PyObject * charcolors = PyArray_FromObject(_charcolors, NPY_INT8, 0,4);
+    if (charcolors == nullptr) return nullptr;
+    std::cout << "Successfully passed a numpy array!";
     for (int y = 0; y < chars_len; ++y) {
         PyObject * row = PyList_GetItem(chars, y);
         void *raw_buffer = PyUnicode_DATA(row);
@@ -32,7 +43,7 @@ static PyObject *pyColorChars(PyObject * self, PyObject * args) {
         if (raw_buffer == nullptr || row_len < 0) return nullptr;
 
         for (int x = 0; x < row_len; ++x) {
-            Py_UCS4 c = PyUnicode_READ_CHAR(row,x);
+            Py_UCS4 c = PyUnicode_READ_CHAR(row, x);
 
         }
     }

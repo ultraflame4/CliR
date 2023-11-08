@@ -8,3 +8,5 @@ setup.py
 **/.idea/**
 /CliRenderer/*.pyd
 *.pyc
+.cache/*
+.fleet/*

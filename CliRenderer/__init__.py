@@ -2,7 +2,7 @@ import dataclasses
 import os
 from PIL import Image
 
-from CliRenderer.ext import test
+from CliRenderer.clir_cpplib import test
 
 from CliRenderer.chartools import PixelsPerChar, generateColoredChars, pixels2Char
 from CliRenderer.colorer import color_char

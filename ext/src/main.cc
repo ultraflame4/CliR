@@ -12,7 +12,7 @@ static PyMethodDef methods [] = {
 };
 static struct PyModuleDef module = {
         PyModuleDef_HEAD_INIT,
-        "ext",
+        "clir_cpplib",
         NULL,
         -1,
         methods

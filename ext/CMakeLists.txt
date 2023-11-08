@@ -3,9 +3,8 @@ project(clir_cpp)
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
 
-
 add_library(
-        clir_cpplib SHARED
+        clir_cpplib MODULE
         src/testmodule.cc
         src/charcolor.cc
         src/main.cc

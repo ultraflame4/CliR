@@ -3,7 +3,7 @@ Contain functions related to coloring the text
 """
 
 import numpy as np
-from CliRenderer.clir_cpplib import ansi_color
+from CliRenderer.clir_cpplib import ansi_color, color_chars
 
 
 def ansi_rgb_fore(color: np.ndarray):
@@ -24,7 +24,7 @@ def color_char(chars: list[str], charcolors: np.ndarray, bg_intensity: float = 1
     :param mask: The twotone mask
     :return:
     """
-
+    color_chars(chars)
     string = ""
 
     for y, row in enumerate(chars):

@@ -7,6 +7,7 @@
 
 static PyMethodDef methods [] = {
         {"ansi_color", pyAnsiColor, METH_VARARGS, "Returns ansi color"},
+        {"color_chars", pyColorChars, METH_VARARGS, "Returns ansi color"},
         {"test",testprint, METH_VARARGS, "Prints hello world"},
         {NULL}
 };

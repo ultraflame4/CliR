@@ -54,7 +54,7 @@ scikit-build = "^0.17.6"
 cmake = "^3.27.7"
 
 [build-system]
-requires = ["poetry-core", "setuptools", "scikit-build", "cmake", "ninja"]
+requires = ["poetry-core", "setuptools", "scikit-build", "cmake", "ninja", "numpy"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.build]

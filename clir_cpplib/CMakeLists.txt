@@ -3,6 +3,13 @@ project(clir_cpp)
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
 
+execute_process(
+        COMMAND "${PYTHON_EXECUTABLE}"
+        -c "import numpy; print(numpy.get_include())"
+        OUTPUT_VARIABLE NumPy_INCLUDE_DIRS
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 add_library(
         clir_cpplib MODULE
         src/testmodule.cc
@@ -16,5 +23,5 @@ if (SKBUILD)
     install(TARGETS clir_cpplib LIBRARY DESTINATION clir_cpp)
 endif ()
 
-include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${Python3_INCLUDE_DIRS} ${NumPy_INCLUDE_DIRS})
 target_link_libraries(clir_cpplib ${Python3_LIBRARIES})

@@ -18,6 +18,6 @@ static struct PyModuleDef module = {
         methods
 };
 
-PyMODINIT_FUNC PyInit_ext(void){
+PyMODINIT_FUNC PyInit_clir_cpplib(void){
     return PyModule_Create(&module);
 }

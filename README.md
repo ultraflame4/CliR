@@ -1,7 +1,7 @@
 # CliRenderer
 
 > [!TIP]
-> _Check out the rust rewrite here: [clir.rs](https://github.com/ultraflame4/clir_rs/tree/0.1.0) . Its ~4x faster, and has support for plain text mode to create text art that also looks great outside the terminal._
+> _Check out the rust rewrite here: [clir.rs](https://github.com/ultraflame4/clir_rs/) . Its ~4x faster, and has support for plain text mode to create text art that also looks great outside the terminal._
 
 A text renderer that renders unicode art from images to the terminal
 
